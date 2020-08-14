@@ -1,38 +1,72 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { random, last } from 'lodash';
+import store from 'store';
 
-export const counterSlice = createSlice({
+const initialize = () => {
+  const data = store.get ( 'taskList' ) || [];
+  const first = random ( 2, 10 );
+  if ( data.length ) {
+    const prevFirst = parseInt ( last ( data ).task.split ( ' + ' )[ 0 ]);
+    if ( prevFirst === first ) {
+      return initialize();
+    }
+  }
+  return {
+    data,
+    first,
+    second: random ( 2, 10 ),
+    check: 0,
+    sum: '',
+    next: false,
+    total: store.get ( 'total' ) || 0,
+    iceCream: store.get ( 'iceCream' ) || 0
+  }
+}
+
+export const counterSlice = createSlice ({
   name: 'counter',
   initialState: {
-    value: 0,
+    value: initialize()
   },
   reducers: {
-    increment: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
+    add: ( state, { payload }) => {
+      state.value.check = payload === state.value.first + state.value.second;
     },
-    decrement: state => {
-      state.value -= 1;
+    newVals: state => {
+      state.value = initialize();
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    setCorrects: state => {
+      const newTotal = ++state.value.total;
+      store.set ( 'total', newTotal );
     },
+    clearCorrects: state => {
+      state.value.total = 0;
+      store.set ( 'total', 0 );
+    },
+    setData: ( state, { payload }) => {
+      state.value.data = payload;
+      store.set ( 'taskList', payload );
+    },
+    clearLog: state => {
+      state.value.total = 0;
+      store.set ( 'total', 0 );
+      state.value.data = [];
+      store.set ( 'taskList', [] );
+    },
+    setNext: ( state, { payload }) => {
+      state.value.next = payload;
+    },
+    setSum: ( state, { payload }) => {
+      state.value.sum = payload;
+    },
+    setIceCream: state => {
+      state.value.iceCream = state.value.iceCream > 2 ? 0 : state.value.iceCream+1;
+      store.set ( 'iceCream', state.value.iceCream );
+    }
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-export const incrementAsync = amount => dispatch => {
-  setTimeout(() => {
-    dispatch(incrementByAmount(amount));
-  }, 1000);
-};
+export const { add, newVals, setCorrects, clearCorrects, setData, clearLog, setNext, setSum, setIceCream } = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

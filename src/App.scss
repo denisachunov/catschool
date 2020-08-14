@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  text-align: center;
+  .App-bar .MuiToolbar-root {
+      justify-content: space-between;
+      svg {
+        color: #fff;
+        opacity: 0.85;
+      }
+      .lang {
+        display: flex;
+      }
+  }
+}
+.App-header {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+.App-logo {
+  margin-top: 2rem;
+  img {
+    margin-left: -85px;
+  }
+}
+
+.clearLog {
+  align-self: center;
+  bottom: 25px;
+  position: fixed !important;
+  width: 50px;
+}
+.iceCream-list {
+  position: absolute;
+  bottom: 25px;
+  left: 40px;
+  display: flex;
+}
+.iceCream-item {
+    width: 125px;
+    height: 125px;
+    border: 1px solid rgba(112, 76, 182, 0.4);
+    border-radius: 50%;
+    padding: 10px;
+    transform: rotate(-25deg);
+    margin-right: 40px;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+    span {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+    }
+}
+.iceCream-dialog {
+  .MuiDialog-paperWidthSm {
+    max-width: initial;
+  }
+  .MuiDialog-paperScrollPaper {
+    max-height: initial;
+  }
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.home-btn {
+  color: #fff !important;
+  width: 20%;
+  height: 3rem;
+  font-size: 1.2rem !important;
+  &.abc {
+    background-color: #9c27b0 !important;
+    margin-right: 10px !important;
+  }
+  &.math {
+    background-color: #f06292 !important;
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.abc {
+  padding: 20px;
+  .textField-he {
+      direction: rtl;
+  }
+  textarea {
+    height: 3rem;
+    letter-spacing: 1rem;
+  }
+}
+
+.error-btn {
+  background-color: red !important;
+  color: #fff;
+}
