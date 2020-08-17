@@ -48,7 +48,7 @@ export default ({ handleClose, iceCreamNumber, isDialogOpen, youtube }) => {
         >
             <DialogContent>
                 <DialogContentText id="alert-dialog-slide-description">
-                    { isLastIceCream ? youtube : <img src={iceCreamPics[ iceCreamNumber+1 ]} style={{ maxHeight: '470px' }} alt='' /> }
+                    { isLastIceCream ? youtube : <img src={iceCreamPics[ iceCreamNumber+1 ]} alt='' /> }
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

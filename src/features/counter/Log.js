@@ -11,27 +11,25 @@ export default () => {
     const dispatch = useDispatch();
 
     useEffect ( () => {
-        if ( data.length > 13 ) {
-          const logDiv = document.querySelector ( '.log' );
-          logDiv.scrollTop = 0;
-        }
-    }, [ data ]);
+        const logDiv = document.querySelector ( '.log' );
+        logDiv.scrollTop = 0;
+    }, [ data.length ]);
 
     return (
         <div className={`${taskList} log`}>
             {
                 !!data.length && (
-                <IconButton className="clearLog" aria-label="delete" onClick={() => dispatch ( clearLog() )}>
-                    <DeleteIcon />
-                </IconButton>
+                    <IconButton className="clearLog" aria-label="delete" onClick={() => dispatch ( clearLog() )}>
+                        <DeleteIcon />
+                    </IconButton>
                 )
             }
             {
                 data.map (
                     ( el, i ) => (
-                    <p key={el.id} className={el.correct ? correctValue : incorrectValue}>
-                        {i+1}. {el.task}
-                    </p>
+                        <p key={el.id} className={el.correct ? correctValue : incorrectValue}>
+                            {i+1}. {el.task}
+                        </p>
                     )
                 )
             }

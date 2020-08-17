@@ -1,14 +1,41 @@
-.row:not( :last-child ) {
-  margin-bottom: 16px;
-  font-size: 78px;
+$breakpoint-tablet: 768px;
+
+.row {
+  display: flex;
+  align-items: center;
+}
+@media (min-width: $breakpoint-tablet) {
+  .row {
+    margin-bottom: 16px;
+    font-size: 78px;
+  }
+  .row + .row,
+  .value + .row {
+    margin-top: 30px;
+  }
+}
+@media (max-width: $breakpoint-tablet) {
+  .row {
+    font-size: 7vh;
+    margin-top: 30px;
+  }
+  .row + .row {
+    flex-direction: column;
+    button {
+      margin-bottom: 15px;
+      font-size: 7vw;
+    }
+  }
 }
 
 @mixin value {
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-top: 2px;
-  font-family: 'Courier New', Courier, monospace;
-  display: flex;
+  font-family: "Courier New",Courier,monospace;
+}
+@media (min-width: $breakpoint-tablet) {
+  @mixin value {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .value {
@@ -27,11 +54,21 @@
 .textbox {
   font-size: 32px;
   padding: 2px;
-  width: 64px;
   text-align: center;
-  margin-right: 8px;
-  margin-left: 60px;
-  width: 120px;
+  height: 9vh;
+}
+@media (min-width: $breakpoint-tablet) {
+  .textbox {
+    margin-right: 8px;
+    margin-left: 45px;
+    width: 120px;
+  }
+}
+@media (max-width: $breakpoint-tablet) {
+  .textbox {
+    margin-left: 25px;
+    width: 20vw;
+  }
 }
 
 @mixin button ( $active: null ) {
@@ -93,15 +130,30 @@
 
 .taskList {
   position: absolute;
-  top: 130px;
-  right: 100px;
   font-size: 16px;
   text-align: left;
-  height: 70vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
-  width: 200px;
+}
+@media (min-width: $breakpoint-tablet) {
+  .taskList {
+    height: 70vh;
+    top: 130px;
+    right: 100px;
+    width: 200px;
+  }
+}
+@media (max-width: $breakpoint-tablet) {
+  .taskList {
+    height: 25vh;
+    bottom: 45px;
+    left: 20px;
+    width: 170px;
+    p {
+      margin: 5px 0 0;
+    }
+  }
 }
 .taskList::-webkit-scrollbar {
 	width: 5px;

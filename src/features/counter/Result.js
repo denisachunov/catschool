@@ -10,7 +10,7 @@ import sound from '../../sounds';
 
 export default () => {
 
-    const { first, second, check, data, sum } = useSelector ( selectCount );
+    const { first, second, operation, check, data, sum } = useSelector ( selectCount );
     const dispatch = useDispatch();
 
     const [ playSound ] = useSound ( check ? sound.correct : sound.wrong );
@@ -20,13 +20,15 @@ export default () => {
         dispatch ( newVals() );
     }
 
+    const correctResult = operation === '+' ? first+second : first-second;
+
     const log = () => {
         const newData = [
             ...data,
             {
                 id: uniqueId (),
                 correct: check,
-                task: `${first} + ${second} = ${first+second}` 
+                task: `${first} ${operation} ${second} = ${correctResult}` 
             }
         ];
         dispatch ( setData ( newData ));
@@ -61,16 +63,16 @@ export default () => {
         <>
             <div className={row}>
                 <div className={answerClass}>
-                    {first} + {second} = {sum}
+                    {first} {operation} {second} = {sum}
                 </div>
-                {
-                    check === false && (
-                    <div className={value}>
-                        {first} + {second} = {first+second}
-                    </div>
-                    )
-                }
             </div>
+            {
+                check === false && (
+                <div className={value}>
+                    {first} {operation} {second} = {correctResult}
+                </div>
+                )
+            }
             <div className={row}>
                 <Button onClick={go} variant="contained" color="primary" style={{ width: '50px', alignSelf: 'center' }}>
                     <ArrowForwardIcon /> 

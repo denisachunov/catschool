@@ -1,3 +1,5 @@
+$breakpoint-tablet: 768px;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -21,17 +23,22 @@ body {
   }
 }
 .App-header {
-  min-height: 70vh;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
 }
+@media (max-width: $breakpoint-tablet) {
+  .App-header {
+    min-height: 49vh;
+  }
+}
 .App-logo {
   margin-top: 2rem;
   img {
-    margin-left: -85px;
+    margin-left: -6%;
   }
 }
 
@@ -41,6 +48,7 @@ body {
   position: fixed !important;
   width: 50px;
 }
+
 .iceCream-list {
   position: absolute;
   bottom: 25px;
@@ -65,12 +73,31 @@ body {
       left: 0;
     }
 }
+@media (max-width: $breakpoint-tablet) {
+  .clearLog {
+    bottom: 5px;
+  }
+  .iceCream-list.iceCream-list--math {
+    right: 21px;
+    width: 75px;
+    flex-direction: column;
+    left: auto;
+  }
+  .iceCream-item {
+    width: 60px;
+    height: 60px;
+  }
+}
 .iceCream-dialog {
   .MuiDialog-paperWidthSm {
     max-width: initial;
   }
   .MuiDialog-paperScrollPaper {
     max-height: initial;
+  }
+  .MuiDialogContent-root img {
+    max-width: 65vw;
+    max-height: 470px;
   }
 }
 
@@ -80,12 +107,10 @@ body {
 
 .home-btn {
   color: #fff !important;
-  width: 20%;
   height: 3rem;
   font-size: 1.2rem !important;
   &.abc {
     background-color: #9c27b0 !important;
-    margin-right: 10px !important;
   }
   &.math {
     background-color: #f06292 !important;
@@ -95,8 +120,35 @@ body {
   }
 }
 
+@media (min-width: $breakpoint-tablet) {
+  .home-btn {
+    width: 20%;
+    &.abc {
+      margin-right: 10px !important;
+    }
+  }
+  .progress {
+    margin: 3% 3% 0;
+  }
+}
+@media (max-width: $breakpoint-tablet) {
+  .home-btn {
+    width: 90%;
+    &.abc {
+      margin-bottom: 10px !important;
+    }
+  }
+  .App-logo img {
+    max-width: 90%;
+  }
+  .progress {
+    margin: 7% 3% 0;
+  }
+}
+
 .abc {
   padding: 20px;
+  position: relative;
   .textField-he {
       direction: rtl;
   }
@@ -109,4 +161,9 @@ body {
 .error-btn {
   background-color: red !important;
   color: #fff;
+}
+.hg-theme-default {
+  .hg-button.hidden {
+    display: none;
+  }
 }

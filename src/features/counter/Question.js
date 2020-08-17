@@ -5,7 +5,7 @@ import { value, row, button, asyncButton, textbox, buttonInactive } from './Coun
 
 export default () => {
 
-    const { first, second, sum } = useSelector ( selectCount );
+    const { first, second, sum, operation } = useSelector ( selectCount );
     const dispatch = useDispatch();
 
     const checking = () => {
@@ -35,7 +35,8 @@ export default () => {
         <>
             <div className={row}>
                 <div className={value}>
-                    {first} + {second} = 
+                    {first} {operation} {second} = 
+                </div>
                 <input 
                     className={textbox} 
                     value={sum} 
@@ -43,7 +44,6 @@ export default () => {
                     onKeyDown={e => e.key === 'Enter' ? checking() : null}
                     autoFocus={true}
                 />
-                </div>
             </div>
             <div className={row}>
                 <button className={`${Number.isInteger ( sum ) ? button : buttonInactive}`} onClick={checking} >

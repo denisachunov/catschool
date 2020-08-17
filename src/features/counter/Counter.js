@@ -21,7 +21,7 @@ export default () => {
       <LinearProgress
         variant="determinate"
         value={total*10}
-        style={{margin: '50px 50px 0'}}
+        className="progress"
       />
 
       <header className="App-header">
@@ -30,14 +30,14 @@ export default () => {
 
         <Log />
 
-        { !!total && <div style={{fontSize: '14px'}}>Правильных ответов подряд: {total}</div> }
+        { !!total && <div style={{fontSize: '14px', marginTop: '10px'}}>Правильных ответов подряд: {total}</div> }
       </header>
 
       <IceCreamDialog />
 
       {
         !!iceCream && (
-          <div className="iceCream-list">
+          <div className="iceCream-list iceCream-list--math">
             {
               Array ( iceCream ).fill().map (( el, index ) => (
                 <div key={index} className="iceCream-item">

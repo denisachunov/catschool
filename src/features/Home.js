@@ -13,7 +13,7 @@ export default () => {
             Алфавит
         </Button>
         <Button className="home-btn math" href="/math">
-            Сложение
+            Арифметика
         </Button>
     </>
   );

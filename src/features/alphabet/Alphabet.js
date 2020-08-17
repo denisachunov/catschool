@@ -10,6 +10,7 @@ import useSound from 'use-sound';
 import sound from '../../sounds';
 import IceCream from '../IceCream';
 import { abcYoutube } from '../../const';
+import { hiddenKeyboardButtons } from '../../const';
 import 'react-simple-keyboard/build/css/index.css';
 
 export default () => {
@@ -35,10 +36,6 @@ export default () => {
 
   const changeText = val => {
     textFieldRef.current.querySelector ( 'textarea' ).focus();
-    if ( val.includes ( '{bksp}' )) {
-      setErrButtons ( '' );
-      return dispatch ( setText ( '' ));
-    }
     if ( validate ( val )) {
       dispatch ( setText ( val ));
       setErrButtons ( '' );
@@ -49,9 +46,6 @@ export default () => {
         if ( completed.length < 3 ) {
           const nextLang = Object.keys ( Langs ).find ( el => el !== lang && !completed.includes ( el ));
           nextLang && dispatch ( change ( nextLang ));
-        }
-        else {
-          alert('hurray');
         }
       }
     }
@@ -94,7 +88,10 @@ export default () => {
         <Keyboard
           keyboardRef={r => (keyboardRef.current = r)}
           onKeyReleased={val => changeText ( `${text}${val}` )}
-          buttonTheme={[{ class:'error-btn', buttons: errButtons}]}
+          buttonTheme={[
+            { class: 'error-btn', buttons: errButtons }, 
+            { class: 'hidden', buttons: hiddenKeyboardButtons }
+          ]}
           layout={Langs[ lang ].layout}
         />
       </div>

@@ -4,7 +4,9 @@ import store from 'store';
 
 const initialize = () => {
   const data = store.get ( 'taskList' ) || [];
-  const first = random ( 2, 10 );
+  const operation = [ '-', '+' ][ random ( 0, 1 )];
+  const first = random ( 2, 20 );
+  const second = operation === '-' ? random ( 1, first ) : random ( 2, 20 );
   if ( data.length ) {
     const prevFirst = parseInt ( last ( data ).task.split ( ' + ' )[ 0 ]);
     if ( prevFirst === first ) {
@@ -14,7 +16,8 @@ const initialize = () => {
   return {
     data,
     first,
-    second: random ( 2, 10 ),
+    second,
+    operation,
     check: 0,
     sum: '',
     next: false,
@@ -29,8 +32,10 @@ export const counterSlice = createSlice ({
     value: initialize()
   },
   reducers: {
-    add: ( state, { payload }) => {
-      state.value.check = payload === state.value.first + state.value.second;
+    add: ({ value }, { payload }) => {
+      const { operation, first, second } = value;
+      const result = operation === '+' ? first + second : first - second;
+      value.check = payload === result;
     },
     newVals: state => {
       state.value = initialize();

@@ -18,8 +18,10 @@ export const abcSlice = createSlice ({
       state.value.text = payload;
     },
     setCompleted: ( state, { payload }) => {
-      state.value.completed = [ ...state.value.completed, payload ];
-      store.set ( 'abc', state.value.completed );
+      if ( !state.value.completed.includes ( payload )) {
+        state.value.completed = [ ...state.value.completed, payload ];
+        store.set ( 'abc', state.value.completed );
+      }
     },
     resetCompleted: state => {
       state.value.completed = [];
