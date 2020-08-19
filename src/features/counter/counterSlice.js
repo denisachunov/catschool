@@ -7,6 +7,7 @@ const initialize = () => {
   const operation = [ '-', '+' ][ random ( 0, 1 )];
   const first = random ( 2, 20 );
   const second = operation === '-' ? random ( 1, first ) : random ( 2, 20 );
+  const correctResult = operation === '-' ? first-second : first+second;
   if ( data.length ) {
     const prevFirst = parseInt ( last ( data ).task.split ( ' + ' )[ 0 ]);
     if ( prevFirst === first ) {
@@ -18,6 +19,7 @@ const initialize = () => {
     first,
     second,
     operation,
+    correctResult,
     check: 0,
     sum: '',
     next: false,
@@ -33,9 +35,7 @@ export const counterSlice = createSlice ({
   },
   reducers: {
     add: ({ value }, { payload }) => {
-      const { operation, first, second } = value;
-      const result = operation === '+' ? first + second : first - second;
-      value.check = payload === result;
+      value.check = payload === value.correctResult;
     },
     newVals: state => {
       state.value = initialize();

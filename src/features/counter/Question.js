@@ -5,7 +5,7 @@ import { value, row, button, asyncButton, textbox, buttonInactive } from './Coun
 
 export default () => {
 
-    const { first, second, sum, operation } = useSelector ( selectCount );
+    const { first, second, sum, operation, correctResult } = useSelector ( selectCount );
     const dispatch = useDispatch();
 
     const checking = () => {
@@ -25,7 +25,7 @@ export default () => {
         setTimeout (
           () => {
             dispatch ( setNext ( true ));
-            dispatch ( setSum ( first+second ));
+            dispatch ( setSum ( correctResult ));
           },
           1000
         )

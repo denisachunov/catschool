@@ -10,7 +10,7 @@ import sound from '../../sounds';
 
 export default () => {
 
-    const { first, second, operation, check, data, sum } = useSelector ( selectCount );
+    const { first, second, operation, check, data, sum, correctResult } = useSelector ( selectCount );
     const dispatch = useDispatch();
 
     const [ playSound ] = useSound ( check ? sound.correct : sound.wrong );
@@ -19,8 +19,6 @@ export default () => {
         dispatch ( setNext ( false ));
         dispatch ( newVals() );
     }
-
-    const correctResult = operation === '+' ? first+second : first-second;
 
     const log = () => {
         const newData = [
@@ -68,9 +66,9 @@ export default () => {
             </div>
             {
                 check === false && (
-                <div className={value}>
-                    {first} {operation} {second} = {correctResult}
-                </div>
+                    <div className={value}>
+                        {first} {operation} {second} = {correctResult}
+                    </div>
                 )
             }
             <div className={row}>

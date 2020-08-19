@@ -143,6 +143,9 @@ $breakpoint-tablet: 768px;
     right: 100px;
     width: 200px;
   }
+  p {
+    margin: 1em 0 0;
+  }
 }
 @media (max-width: $breakpoint-tablet) {
   .taskList {
