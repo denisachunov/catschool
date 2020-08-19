@@ -11,11 +11,13 @@ import sound from '../../sounds';
 import IceCream from '../IceCream';
 import { abcYoutube } from '../../const';
 import { hiddenKeyboardButtons } from '../../const';
+import { debounce } from 'lodash';
 import 'react-simple-keyboard/build/css/index.css';
 
 export default () => {
 
   const [ errButtons, setErrButtons ] = useState ( '' );
+  const [ pressedButton, setPressedButton ] = useState ( '' );
   const keyboardRef = useRef();
   const textFieldRef = useRef();
 
@@ -25,7 +27,7 @@ export default () => {
   const dispatch = useDispatch();
   const { lang, text, completed } = useSelector ( selectABC );
 
-  useEffect(() => {
+  useEffect (() => {
     textFieldRef.current.querySelector ( 'textarea' ).focus();
   }, [ lang ]);
 
@@ -39,6 +41,8 @@ export default () => {
     if ( validate ( val )) {
       dispatch ( setText ( val ));
       setErrButtons ( '' );
+      setPressedButton ( val[ val.length-1 ] );
+      debounce ( () => setPressedButton ( '' ), 200 )();
       playSound();
       if ( val.length === Langs[ lang ].abc.length ) {
         dispatch ( setCompleted ( lang ));
@@ -90,7 +94,8 @@ export default () => {
           onKeyReleased={val => changeText ( `${text}${val}` )}
           buttonTheme={[
             { class: 'error-btn', buttons: errButtons }, 
-            { class: 'hidden', buttons: hiddenKeyboardButtons }
+            { class: 'hidden', buttons: hiddenKeyboardButtons },
+            { class: 'pressed-btn', buttons: pressedButton }
           ]}
           layout={Langs[ lang ].layout}
         />

@@ -44,7 +44,7 @@ body {
 
 .clearLog {
   align-self: center;
-  bottom: 25px;
+  bottom: 15px;
   position: fixed !important;
   width: 50px;
 }
@@ -158,12 +158,16 @@ body {
   }
 }
 
-.error-btn {
-  background-color: red !important;
-  color: #fff;
-}
 .hg-theme-default {
   .hg-button.hidden {
     display: none;
+  }
+  .hg-button.pressed-btn {
+    background-color: #66bb6a;
+    color: #fff;
+  }
+  .hg-button.error-btn {
+    background-color: red;
+    color: #fff;
   }
 }
