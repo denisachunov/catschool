@@ -4,16 +4,16 @@ import store from 'store';
 
 const initialize = () => {
   const data = store.get ( 'taskList' ) || [];
-  const operation = [ '-', '+' ][ random ( 0, 1 )];
   const first = random ( 2, 20 );
-  const second = operation === '-' ? random ( 1, first ) : random ( 2, 20 );
-  const correctResult = operation === '-' ? first-second : first+second;
   if ( data.length ) {
     const prevFirst = parseInt ( last ( data ).task.split ( ' + ' )[ 0 ]);
     if ( prevFirst === first ) {
       return initialize();
     }
   }
+  const operation = [ '-', '+' ][ random ( 0, 1 )];
+  const second = operation === '-' ? random ( 1, first ) : random ( 2, 20 );
+  const correctResult = operation === '-' ? first-second : first+second;
   return {
     data,
     first,

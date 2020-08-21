@@ -1,4 +1,5 @@
 $breakpoint-tablet: 768px;
+$breakpoint-keyboard-open: 500px;
 
 body {
   margin: 0;
@@ -170,4 +171,27 @@ body {
     background-color: red;
     color: #fff;
   }
+}
+
+.correct-answers-number {
+  font-size: 14px; 
+  margin-top: 10px;
+}
+
+@media ( max-height: $breakpoint-keyboard-open ) {
+  .iceCream-list,
+  .correct-answers-number {
+    display: none;
+  }
+}
+
+/** Hide arrows on input number **/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

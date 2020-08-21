@@ -7,6 +7,7 @@ import Result from './Result';
 import Log from './Log';
 import IceCreamDialog from './IceCreamDialog';
 import AppBar from '../AppBar';
+import { REQUIRED_CORRECT_ANSWERS } from '../../const';
 import pics from '../../images';
 
 export default () => {
@@ -20,7 +21,7 @@ export default () => {
 
       <LinearProgress
         variant="determinate"
-        value={total*10}
+        value={total * 100 / REQUIRED_CORRECT_ANSWERS}
         className="progress"
       />
 
@@ -30,7 +31,7 @@ export default () => {
 
         <Log />
 
-        { !!total && <div style={{fontSize: '14px', marginTop: '10px'}}>Правильных ответов подряд: {total}</div> }
+        { !!total && <div className="correct-answers-number">Правильных ответов подряд: {total}</div> }
       </header>
 
       <IceCreamDialog />

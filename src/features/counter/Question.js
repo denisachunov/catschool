@@ -37,7 +37,8 @@ export default () => {
                 <div className={value}>
                     {first} {operation} {second} = 
                 </div>
-                <input 
+                <input
+                    type="number"
                     className={textbox} 
                     value={sum} 
                     onChange={changeSum} 

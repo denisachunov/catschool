@@ -1,4 +1,5 @@
 $breakpoint-tablet: 768px;
+$breakpoint-keyboard-open: 500px;
 
 .row {
   display: flex;
@@ -56,6 +57,7 @@ $breakpoint-tablet: 768px;
   padding: 2px;
   text-align: center;
   height: 9vh;
+  z-index: 1;
 }
 @media (min-width: $breakpoint-tablet) {
   .textbox {
@@ -135,6 +137,7 @@ $breakpoint-tablet: 768px;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
+  z-index: 0;
 }
 @media (min-width: $breakpoint-tablet) {
   .taskList {
@@ -156,6 +159,11 @@ $breakpoint-tablet: 768px;
     p {
       margin: 5px 0 0;
     }
+  }
+}
+@media ( max-height: $breakpoint-keyboard-open ) {
+  .taskList {
+    display: none;
   }
 }
 .taskList::-webkit-scrollbar {

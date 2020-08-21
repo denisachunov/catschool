@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import IceCream from '../IceCream';
-import { mathYoutube } from '../../const';
+import { mathYoutube, REQUIRED_CORRECT_ANSWERS } from '../../const';
 import { selectCount, newVals, clearCorrects, clearLog, setNext, setIceCream } from './counterSlice';
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
         dispatch ( newVals() );
     };
 
-    const isDialogOpen = total === 10;
+    const isDialogOpen = total === REQUIRED_CORRECT_ANSWERS;
 
     return <IceCream {...{ handleClose, isDialogOpen, youtube: mathYoutube, iceCreamNumber: iceCream }} />;
 }
