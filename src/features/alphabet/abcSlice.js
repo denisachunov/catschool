@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import store from 'store';
 
+const initialize = () => ({
+  lang: 'en',
+  text: '',
+  completed: store.get ( 'abc' ) || []
+});
+
 export const abcSlice = createSlice ({
   name: 'abc',
   initialState: {
-    value: {
-        lang: 'en',
-        text: '',
-        completed: store.get ( 'abc' ) || []
-    }
+    value: initialize()
   },
   reducers: {
     change: ( state, { payload }) => {
@@ -26,11 +28,15 @@ export const abcSlice = createSlice ({
     resetCompleted: state => {
       state.value.completed = [];
       store.set ( 'abc', null );
+    },
+    resetAbc: state => {
+      store.set ( 'abc', null );
+      state.value = initialize();
     }
   },
 });
 
-export const { change, setText, setCompleted, resetCompleted } = abcSlice.actions;
+export const { change, setText, setCompleted, resetCompleted, resetAbc } = abcSlice.actions;
 
 export const selectABC = state => state.abc.value;
 

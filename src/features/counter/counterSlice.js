@@ -67,11 +67,17 @@ export const counterSlice = createSlice ({
     setIceCream: state => {
       state.value.iceCream = state.value.iceCream > 2 ? 0 : state.value.iceCream+1;
       store.set ( 'iceCream', state.value.iceCream );
+    },
+    resetCounter: state => {
+      store.set ( 'total', 0 );
+      store.set ( 'iceCream', 0 );
+      store.set ( 'taskList', [] );
+      state.value = initialize();
     }
   },
 });
 
-export const { add, newVals, setCorrects, clearCorrects, setData, clearLog, setNext, setSum, setIceCream } = counterSlice.actions;
+export const { add, newVals, setCorrects, clearCorrects, setData, clearLog, setNext, setSum, setIceCream, resetCounter } = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

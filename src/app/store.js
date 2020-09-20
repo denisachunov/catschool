@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import abcReducer from '../features/alphabet/abcSlice';
+import counter from '../features/counter/counterSlice';
+import abc from '../features/alphabet/abcSlice';
 
-export default configureStore({
+export default configureStore ({
   reducer: {
-    counter: counterReducer,
-    abc: abcReducer
-  },
+    counter,
+    abc
+  }
 });
